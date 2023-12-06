@@ -1,0 +1,64 @@
+@startuml
+interface IPerson {
+~ String getName()
+~ void addSkill(Skills)
+}
+interface Locatable
+{
+~ String getPlace()
+~ void setType(Places)
+~ Places getType()
+}
+enum Places {
++  Mountains
++  Airplane
++  Mine
+}
+class Skills {
+- String name
+- String info
++ String getName()
++ String getInfo()
+}
+class main {
++ {static} void main(String[])
+}
+abstract class AbstractPerson {
++ String name
++ int age
++ String getName()
+}
+class Location {
+- List<Skills> skills
+- Places type
++ String placeName
++ String typeName
++ void setType(Places)
++ Places getType()
++ String getPlace()
++ List<Skills> getSkills()
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class Person {
+- List<Skills> skills
++ {static} void look_after(String,String,String)
++ {static} void loose_world(String)
++ {static} void tell(String)
++ {static} void notice(String,String,String)
++ {static} void control_words(String,String,String)
++ {static} void drill(String)
++ List<Skills> getSkills()
++ void addSkill(Skills)
++ int hashCode()
++ boolean equals(Object)
++ String toString()
++ String getName()
+}
+
+
+IPerson <|.. AbstractPerson
+ILocation <|.. Location
+AbstractPerson <|-- Person
+@enduml
