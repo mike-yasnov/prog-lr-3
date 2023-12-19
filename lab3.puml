@@ -1,34 +1,72 @@
 @startuml
-interface IPerson {
-~ String getName()
-~ void addSkill(Skills)
-}
-interface Locatable
-{
+interface locations.Locatable {
 ~ String getPlace()
 ~ void setType(Places)
 ~ Places getType()
 }
-enum Places {
-+  Mountains
-+  Airplane
-+  Mine
-}
-class Skills {
+class personalities.Skills {
 - String name
 - String info
 + String getName()
 + String getInfo()
 }
-class main {
+class Main {
 + {static} void main(String[])
 }
-abstract class AbstractPerson {
-+ String name
-+ int age
+class personalities.Person {
+- List<Skills> skills
+- String name
+- int age
++ {static} void lookAfter(String,String,String)
++ {static} void looseWorld(String,int)
++ {static} void tell(String,String)
++ {static} void notice(String,String)
++ {static} void controlWords(String,String)
++ {static} void drill(String,Location)
++ {static} void notice(String)
++ {static} void scream(String)
++ {static} void feel(String,String)
++ List<Skills> getSkills()
++ void addSkill(Skills)
++ int hashCode()
++ boolean equals(Object)
++ String toString()
 + String getName()
++ int getAge()
 }
-class Location {
+abstract class subjects.Subject {
+- String name
++ String getName()
++ void setName(String)
+}
+class subjects.Newspaper {
+- String info
++ void setInfo(String)
++ void printBulletins()
+}
+class subjects.Phantom {
+- Location location
++ Location getLocation()
++ void hide()
+}
+class subjects.Mountains {
+- Location location
++ void setLocation(Location)
++ void unapproach()
++ void grow()
+}
+class subjects.Wind {
+- int speed
++ int getSpeed()
++ void setSpeed(int)
++ void driveCylinders()
+}
+interface personalities.Humanable {
+~ String getName()
+~ int getAge()
+~ void addSkill(Skills)
+}
+class locations.Location {
 - List<Skills> skills
 - Places type
 + String placeName
@@ -41,24 +79,18 @@ class Location {
 + boolean equals(Object)
 + String toString()
 }
-class Person {
-- List<Skills> skills
-+ {static} void look_after(String,String,String)
-+ {static} void loose_world(String)
-+ {static} void tell(String)
-+ {static} void notice(String,String,String)
-+ {static} void control_words(String,String,String)
-+ {static} void drill(String)
-+ List<Skills> getSkills()
-+ void addSkill(Skills)
-+ int hashCode()
-+ boolean equals(Object)
-+ String toString()
-+ String getName()
+enum locations.Places {
++  Mountains
++  Airplane
++  Mine
++  AbstractWorld
 }
 
 
-IPerson <|.. AbstractPerson
-ILocation <|.. Location
-AbstractPerson <|-- Person
+personalities.Humanable <|.. personalities.Person
+subjects.Subject <|-- subjects.Newspaper
+subjects.Subject <|-- subjects.Phantom
+subjects.Subject <|-- subjects.Mountains
+subjects.Subject <|-- subjects.Wind
+locations.Locatable <|.. locations.Location
 @enduml
